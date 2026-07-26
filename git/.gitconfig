@@ -1,0 +1,26 @@
+[include]
+	path = .gitconfig.local
+
+[core]
+	editor = nvim
+	pager = delta
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = false
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	dark = true
+	line-numbers = true
+	navigate = true
+
+[merge]
+	conflictStyle = zdiff3
+
+[diff]
+	colorMoved = default

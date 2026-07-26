@@ -1,0 +1,16 @@
+.DS_Store
+*.log
+*.tmp
+*.swp
+
+# Machine-local and sensitive files
+**/private.zsh
+**/.env
+**/.env.*
+!**/.env.example
+*.backup*
+
+# Generated editor state
+**/.ruby-lsp/
+**/logs/
+**/nvim.log

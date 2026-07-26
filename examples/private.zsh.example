@@ -1,0 +1,4 @@
+# Copy to ~/.config/zsh/private.zsh and keep it out of Git.
+
+# export EXAMPLE_API_TOKEN="..."
+# export DATABASE_PASSWORD="..."

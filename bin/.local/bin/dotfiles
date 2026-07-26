@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+REPO="${DOTFILES_DIR:-$HOME/dotfiles}"
+PACKAGES=(bin git nvim starship zsh)
+
+usage() {
+  cat <<'EOF'
+Usage: dotfiles <command>
+
+Commands:
+  status   Show repository changes
+  sync     Recreate all symlinks
+  update   Pull, install dependencies, sync, and update Neovim
+  doctor   Verify required commands and managed links
+  help     Show this message
+EOF
+}
+
+case "${1:-help}" in
+  status)
+    git -C "$REPO" status --short --branch
+    ;;
+  sync)
+    stow --dir="$REPO" --target="$HOME" --restow "${PACKAGES[@]}"
+    ;;
+  update)
+    git -C "$REPO" pull --rebase
+    brew bundle --file="$REPO/Brewfile"
+    stow --dir="$REPO" --target="$HOME" --restow "${PACKAGES[@]}"
+    nvim --headless "+Lazy! sync" +qa
+    ;;
+  doctor)
+    failed=0
+    for command_name in git stow nvim starship fzf zoxide eza bat delta lazygit; do
+      if command -v "$command_name" >/dev/null 2>&1; then
+        printf 'ok      %s\n' "$command_name"
+      else
+        printf 'missing %s\n' "$command_name"
+        failed=1
+      fi
+    done
+
+    for target in "$HOME/.zshrc" "$HOME/.config/nvim" "$HOME/.config/starship.toml"; do
+      if [[ -L "$target" ]]; then
+        printf 'linked  %s\n' "$target"
+      else
+        printf 'unlinked %s\n' "$target"
+        failed=1
+      fi
+    done
+    exit "$failed"
+    ;;
+  help|-h|--help)
+    usage
+    ;;
+  *)
+    usage >&2
+    exit 2
+    ;;
+esac

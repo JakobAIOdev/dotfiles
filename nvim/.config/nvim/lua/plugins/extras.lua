@@ -1,0 +1,56 @@
+return {
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      { "<leader>ha", function() require("harpoon"):list():add() end, desc = "Harpoon add file" },
+      {
+        "<leader>hh",
+        function()
+          local harpoon = require("harpoon")
+          harpoon.ui:toggle_quick_menu(harpoon:list())
+        end,
+        desc = "Harpoon menu",
+      },
+      { "<leader>hn", function() require("harpoon"):list():next() end, desc = "Harpoon next" },
+      { "<leader>hp", function() require("harpoon"):list():prev() end, desc = "Harpoon previous" },
+      { "<leader>1", function() require("harpoon"):list():select(1) end, desc = "Harpoon file 1" },
+      { "<leader>2", function() require("harpoon"):list():select(2) end, desc = "Harpoon file 2" },
+      { "<leader>3", function() require("harpoon"):list():select(3) end, desc = "Harpoon file 3" },
+      { "<leader>4", function() require("harpoon"):list():select(4) end, desc = "Harpoon file 4" },
+    },
+  },
+
+  {
+    "folke/persistence.nvim",
+    event = "BufReadPre",
+    opts = {},
+    keys = {
+      { "<leader>qs", function() require("persistence").load() end, desc = "Restore session" },
+      { "<leader>qS", function() require("persistence").select() end, desc = "Select session" },
+      { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore last session" },
+      { "<leader>qd", function() require("persistence").stop() end, desc = "Do not save session" },
+    },
+  },
+
+  {
+    "andweeb/presence.nvim",
+    event = "VeryLazy",
+    opts = {
+      auto_update = true,
+      main_image = "file",
+      blacklist = {
+        ".*[Jj][Aa][Kk][Oo][Bb]%s[Ss][Cc][Hh][Ww][Ee][Nn][Ii][Nn][Gg][Ee][Rr].*",
+        ".*[Ss][Cc][Hh][Ww][Ee][Nn][Dd][Ii][Nn][Gg][Ee][Rr].*",
+        ".*[Ff][Hh]%s[Ss][Aa][Ll][Zz][Bb][Uu][Rr][Gg].*",
+      },
+    },
+  },
+
+  {
+    "ThePrimeagen/vim-be-good",
+    cmd = "VimBeGood",
+  },
+}
