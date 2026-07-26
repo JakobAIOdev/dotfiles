@@ -1,7 +1,7 @@
 # `~` Jakob's dotfiles
 
-A small, fast macOS development setup built around **Neovim**, **Zsh**,
-**Starship**, and **Catppuccin Mocha**.
+A small, fast macOS development setup built around **Ghostty**, **Neovim**,
+**Zsh**, **Starship**, and **Catppuccin Mocha**.
 
 The repository uses [GNU Stow](https://www.gnu.org/software/stow/) to create
 transparent symlinks into `$HOME`. Editing the live configuration therefore
@@ -11,6 +11,7 @@ edits the tracked repository files directly.
 
 | Area | Tools |
 |---|---|
+| Terminal | Ghostty |
 | Editor | Neovim 0.12, lazy.nvim, Tree-sitter, Mason, Snacks |
 | Shell | Zsh, Starship, fzf, zoxide |
 | CLI | eza, bat, delta, lazygit, ripgrep, fd |
@@ -44,6 +45,7 @@ DOTFILES_SKIP_NVIM=1 ./install.sh
 ```text
 dotfiles/
 ├── bin/        # dotfiles helper command
+├── ghostty/    # ~/.config/ghostty
 ├── git/        # portable Git preferences
 ├── nvim/       # ~/.config/nvim
 ├── starship/   # ~/.config/starship.toml
@@ -75,6 +77,7 @@ git -C ~/dotfiles push
 
 - [Neovim cheatsheet](nvim/.config/nvim/CHEATSHEET.md)
 - [Zsh cheatsheet](zsh/.config/zsh/CHEATSHEET.md)
+- [Ghostty learning guide](docs/GHOSTTY.md)
 
 ## Secrets
 
@@ -100,14 +103,14 @@ gitleaks dir ~/dotfiles --redact
 
 ```bash
 cd ~/dotfiles
-stow --target="$HOME" --restow bin git nvim starship zsh
+stow --target="$HOME" --restow bin ghostty git nvim starship zsh
 ```
 
 Remove only the symlinks:
 
 ```bash
 cd ~/dotfiles
-stow --target="$HOME" --delete bin git nvim starship zsh
+stow --target="$HOME" --delete bin ghostty git nvim starship zsh
 ```
 
 ## License

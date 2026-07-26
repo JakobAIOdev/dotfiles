@@ -1,0 +1,33 @@
+# Ghostty is the terminal window. Zsh remains the shell running inside it.
+#
+# Reload this file without restarting Ghostty:
+#   Cmd + Shift + ,
+#
+# Open this file from Ghostty:
+#   Cmd + ,
+
+# Keep the whole setup visually aligned with Neovim and Starship.
+theme = Catppuccin Mocha
+
+# 0xProto Nerd Font provides both readable code glyphs and terminal icons.
+font-family = 0xProto Nerd Font Mono
+font-size = 15
+
+# Give terminal content room without wasting screen space.
+window-padding-x = 12
+window-padding-y = 10
+window-padding-balance = true
+
+# Restore window size and position on the next launch.
+window-save-state = always
+
+# A steady block cursor matches Neovim's normal mode and stays easy to locate.
+cursor-style = block
+cursor-style-blink = false
+
+# Keep the interface quiet while typing.
+mouse-hide-while-typing = true
+macos-titlebar-style = transparent
+
+# Selecting text copies it immediately; Cmd+C still works as expected.
+copy-on-select = true

@@ -5,6 +5,9 @@ brew "stow"
 brew "mise"
 brew "gitleaks"
 
+# Terminal
+cask "ghostty"
+
 # Shell
 brew "starship"
 brew "fzf"
