@@ -3,7 +3,7 @@
 set -euo pipefail
 
 REPO="${DOTFILES_DIR:-$HOME/dotfiles}"
-PACKAGES=(bin ghostty git nvim starship zsh)
+PACKAGES=(bin ghostty git mise nvim starship zsh)
 
 usage() {
   cat <<'EOF'
@@ -49,7 +49,7 @@ case "${1:-help}" in
       failed=1
     fi
 
-    for target in "$HOME/.zshrc" "$HOME/.config/ghostty" "$HOME/.config/nvim" "$HOME/.config/starship.toml"; do
+    for target in "$HOME/.zshrc" "$HOME/.config/ghostty" "$HOME/.config/mise" "$HOME/.config/nvim" "$HOME/.config/starship.toml"; do
       if [[ -L "$target" ]]; then
         printf 'linked  %s\n' "$target"
       else

@@ -4,7 +4,7 @@ set -euo pipefail
 
 DOTFILES_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP_ROOT="${XDG_STATE_HOME:-$HOME/.local/state}/dotfiles/backups/$(date +%Y%m%d-%H%M%S)"
-PACKAGES=(bin ghostty git nvim starship zsh)
+PACKAGES=(bin ghostty git mise nvim starship zsh)
 
 info() {
   printf '\033[1;34m::\033[0m %s\n' "$1"
@@ -47,6 +47,7 @@ backup_file ".zshrc"
 backup_file ".zprofile"
 backup_file ".gitconfig"
 backup_file ".config/ghostty"
+backup_file ".config/mise"
 backup_file ".config/starship.toml"
 backup_file ".config/nvim"
 

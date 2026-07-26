@@ -1,0 +1,23 @@
+# This file affects only this directory and its children.
+
+[tools]
+# Mise installs and selects this exact Node release for the playground.
+node = "26.5.0"
+
+[env]
+# Non-secret values can be shared in mise.toml.
+LEARNING_ENV = "mise-playground"
+
+[tasks.info]
+description = "Show the tool and environment selected by Mise"
+run = """
+printf 'node version: '
+node --version
+printf 'node path:    '
+command -v node
+printf 'environment:  %s\\n' "$LEARNING_ENV"
+"""
+
+[tasks.hello]
+description = "Run a tiny command with the Mise-managed Node"
+run = "node -e \"console.log('hello from ' + process.version)\""

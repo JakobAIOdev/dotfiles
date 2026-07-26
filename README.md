@@ -14,6 +14,7 @@ edits the tracked repository files directly.
 | Terminal | Ghostty |
 | Editor | Neovim 0.12, lazy.nvim, Tree-sitter, Mason, Snacks |
 | Shell | Zsh, Starship, fzf, zoxide |
+| Runtime management | Mise |
 | CLI | eza, bat, delta, lazygit, ripgrep, fd |
 | Theme | Catppuccin Mocha |
 | Management | GNU Stow, Homebrew Bundle |
@@ -47,6 +48,7 @@ dotfiles/
 ├── bin/        # dotfiles helper command
 ├── ghostty/    # ~/.config/ghostty
 ├── git/        # portable Git preferences
+├── mise/       # ~/.config/mise
 ├── nvim/       # ~/.config/nvim
 ├── starship/   # ~/.config/starship.toml
 └── zsh/        # ~/.zshrc, ~/.zprofile, ~/.config/zsh
@@ -78,6 +80,7 @@ git -C ~/dotfiles push
 - [Neovim cheatsheet](nvim/.config/nvim/CHEATSHEET.md)
 - [Zsh cheatsheet](zsh/.config/zsh/CHEATSHEET.md)
 - [Ghostty learning guide](docs/GHOSTTY.md)
+- [Mise learning guide](docs/MISE.md)
 
 ## Secrets
 
@@ -103,14 +106,14 @@ gitleaks dir ~/dotfiles --redact
 
 ```bash
 cd ~/dotfiles
-stow --target="$HOME" --restow bin ghostty git nvim starship zsh
+stow --target="$HOME" --restow bin ghostty git mise nvim starship zsh
 ```
 
 Remove only the symlinks:
 
 ```bash
 cd ~/dotfiles
-stow --target="$HOME" --delete bin ghostty git nvim starship zsh
+stow --target="$HOME" --delete bin ghostty git mise nvim starship zsh
 ```
 
 ## License
