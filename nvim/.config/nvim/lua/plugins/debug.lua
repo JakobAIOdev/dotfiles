@@ -61,6 +61,7 @@ return {
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
       "fredrikaverpil/neotest-golang",
+      "marilari88/neotest-vitest",
     },
     keys = {
       { "<leader>tt", function() require("neotest").run.run() end, desc = "Run nearest test" },
@@ -76,6 +77,9 @@ return {
       return {
         adapters = {
           require("neotest-golang"),
+          require("neotest-vitest")({
+            filter_dir = function(name) return name ~= "node_modules" end,
+          }),
         },
         status = { virtual_text = true },
         output = { open_on_run = false },

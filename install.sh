@@ -46,6 +46,7 @@ command -v stow >/dev/null 2>&1 ||
 backup_file ".zshrc"
 backup_file ".zprofile"
 backup_file ".gitconfig"
+backup_file ".local/bin/dotfiles"
 backup_file ".config/ghostty"
 backup_file ".config/mise"
 backup_file ".config/starship.toml"
@@ -71,4 +72,11 @@ if [[ -d "$BACKUP_ROOT" ]]; then
   info "backup saved to $BACKUP_ROOT"
 fi
 
-info "done — restart the shell with: exec zsh -l"
+info "done"
+info "restart the shell with: exec zsh -l"
+info "then verify the setup with: dotfiles doctor"
+
+if [[ ! -e "$HOME/.gitconfig.local" ]]; then
+  info "Git identity is not configured yet"
+  info "copy and edit: $DOTFILES_DIR/examples/gitconfig.local.example -> ~/.gitconfig.local"
+fi

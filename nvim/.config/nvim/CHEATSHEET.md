@@ -13,7 +13,8 @@ which-key, sobald du `Space` drückst.
 | `Space ,` | Offene Buffer |
 | `Space ww` | Datei speichern |
 | `Space wa` | Alle Dateien speichern |
-| `Ctrl+\` | Floating Terminal |
+| `Space o t` | Floating Terminal |
+| `Ctrl+\` | Floating Terminal (alternative binding) |
 | `Space z` | Zen Mode |
 | `Space qq` | Neovim schließen |
 
@@ -41,6 +42,8 @@ Im Picker funktionieren `Ctrl+j/k`, `Tab`, `Enter`, `Esc` und `?` für Hilfe.
 | Key | Aktion |
 | --- | --- |
 | `Space e` | Explorer öffnen |
+| `Ctrl+h` | Vom Code in den Explorer wechseln |
+| `Ctrl+l` | Vom Explorer zurück zum Code wechseln |
 | `Enter` / `l` | Datei öffnen / Ordner aufklappen |
 | `h` | Ordner zuklappen |
 | `Backspace` | Einen Ordner nach oben |
@@ -123,7 +126,7 @@ Kotlin, C#, SQL, Dockerfile und Markdown.
 
 ## Tests und Debugging
 
-Go-Tests laufen über Neotest:
+Go-Tests und JavaScript-/TypeScript-Tests mit lokalem Vitest laufen über Neotest:
 
 | Key | Aktion |
 | --- | --- |

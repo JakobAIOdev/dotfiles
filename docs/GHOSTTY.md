@@ -25,6 +25,8 @@ repository with GNU Stow.
 | `window-save-state` | Restores the last window size and position |
 | `cursor-style*` | Uses a visible, non-blinking block cursor |
 | `mouse-hide-while-typing` | Hides the pointer while keyboard input is active |
+| `mouse-shift-capture` | Always reserves Shift+Drag for terminal text selection |
+| `copy-on-select` | Copies each selection directly to the macOS clipboard |
 
 ## First commands
 
@@ -49,6 +51,8 @@ These are Ghostty defaults, not custom mappings:
 | `Cmd+Option+Arrow` | Focus a neighboring split |
 | `Cmd+Shift+Enter` | Zoom or restore the current split |
 | `Cmd+W` | Close the current surface |
+| `Shift+Drag` | Select text even when Neovim or another TUI captures the mouse |
+| `Cmd+C` | Copy the current selection; selection already auto-copies in this setup |
 | `Cmd++` / `Cmd+-` | Increase or decrease font size |
 | `Cmd+0` | Reset font size |
 | `Cmd+F` | Search terminal output |

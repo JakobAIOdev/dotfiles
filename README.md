@@ -1,7 +1,7 @@
 # `~` Jakob's dotfiles
 
-A small, fast macOS development setup built around **Ghostty**, **Neovim**,
-**Zsh**, **Starship**, and **Catppuccin Mocha**.
+A small, fast, and reproducible macOS development setup built around
+**Ghostty**, **Neovim**, **Zsh**, **Starship**, and **Catppuccin Mocha**.
 
 The repository uses [GNU Stow](https://www.gnu.org/software/stow/) to create
 transparent symlinks into `$HOME`. Editing the live configuration therefore
@@ -18,11 +18,18 @@ edits the tracked repository files directly.
 | CLI | eza, bat, delta, lazygit, ripgrep, fd |
 | Theme | Catppuccin Mocha |
 | Management | GNU Stow, Homebrew Bundle |
+| Validation | ShellCheck, shfmt, Gitleaks, GitHub Actions |
+
+## Requirements
+
+- macOS
+- [Homebrew](https://brew.sh)
+- Command Line Tools for Xcode (`xcode-select --install`)
 
 ## Install
 
 ```bash
-git clone git@github.com:JakobAIOdev/dotfiles.git ~/dotfiles
+git clone https://github.com/JakobAIOdev/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ./install.sh
 ```
@@ -41,6 +48,20 @@ DOTFILES_SKIP_BREW=1 ./install.sh
 DOTFILES_SKIP_NVIM=1 ./install.sh
 ```
 
+The installer never overwrites an unmanaged configuration. Conflicting files
+are moved to a timestamped directory below
+`~/.local/state/dotfiles/backups/`.
+
+After the first installation, create the intentionally untracked,
+machine-specific files:
+
+```bash
+cp ~/dotfiles/examples/gitconfig.local.example ~/.gitconfig.local
+cp ~/dotfiles/examples/private.zsh.example ~/.config/zsh/private.zsh
+```
+
+Edit both copies before using them. Never commit credentials or access tokens.
+
 ## Packages
 
 ```text
@@ -50,6 +71,7 @@ dotfiles/
 ├── git/        # portable Git preferences
 ├── mise/       # ~/.config/mise
 ├── nvim/       # ~/.config/nvim
+├── scripts/    # repository checks
 ├── starship/   # ~/.config/starship.toml
 └── zsh/        # ~/.zshrc, ~/.zprofile, ~/.config/zsh
 ```
@@ -63,6 +85,7 @@ dotfiles status    # show repository changes
 dotfiles sync      # recreate all symlinks
 dotfiles update    # pull, install tools, sync, update Neovim
 dotfiles doctor    # verify commands and symlinks
+dotfiles check     # run syntax, formatting, secret, and install checks
 ```
 
 Because the active files are symlinks, normal edits appear immediately:
@@ -75,8 +98,11 @@ git -C ~/dotfiles commit -m "tune neovim"
 git -C ~/dotfiles push
 ```
 
-## Cheatsheets
+Run `dotfiles check` before committing. The same check runs in GitHub Actions.
 
+## Guides and cheatsheets
+
+- [Neovim guide](nvim/.config/nvim/README.md)
 - [Neovim cheatsheet](nvim/.config/nvim/CHEATSHEET.md)
 - [Zsh cheatsheet](zsh/.config/zsh/CHEATSHEET.md)
 - [Ghostty learning guide](docs/GHOSTTY.md)
@@ -101,6 +127,8 @@ Before every push, scan the repository with:
 ```bash
 gitleaks dir ~/dotfiles --redact
 ```
+
+`dotfiles check` includes this scan.
 
 ## Manual Stow usage
 

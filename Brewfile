@@ -4,6 +4,10 @@ brew "gh"
 brew "stow"
 brew "mise"
 brew "gitleaks"
+brew "actionlint"
+brew "shellcheck"
+brew "shfmt"
+brew "stylua"
 
 # Terminal
 cask "ghostty"

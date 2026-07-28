@@ -123,7 +123,7 @@ return {
         sources = {
           explorer = {
             hidden = true,
-            ignored = false,
+            ignored = true,
           },
           files = {
             hidden = true,
@@ -161,7 +161,7 @@ return {
       { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete buffer" },
       { "<leader>bo", function() Snacks.bufdelete.other() end, desc = "Delete other buffers" },
       { "<C-\\>", function() Snacks.terminal() end, mode = { "n", "t" }, desc = "Toggle terminal" },
-      { "<leader>tf", function() Snacks.terminal() end, mode = { "n", "t" }, desc = "Floating terminal" },
+      { "<leader>ot", function() Snacks.terminal() end, mode = { "n", "t" }, desc = "Floating terminal" },
 
       -- UI
       { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss notifications" },

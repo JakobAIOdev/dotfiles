@@ -29,5 +29,7 @@ cursor-style-blink = false
 mouse-hide-while-typing = true
 macos-titlebar-style = transparent
 
-# Selecting text copies it immediately; Cmd+C still works as expected.
-copy-on-select = true
+# Neovim uses mouse reporting, so Shift+Drag is always reserved for selecting
+# terminal text. The selection is copied straight to the macOS clipboard.
+mouse-shift-capture = never
+copy-on-select = clipboard

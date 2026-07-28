@@ -1,0 +1,24 @@
+name: Check dotfiles
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: macos-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Install validation tools
+        run: brew install actionlint gitleaks shellcheck shfmt stow stylua
+
+      - name: Run checks
+        run: ./scripts/check.sh

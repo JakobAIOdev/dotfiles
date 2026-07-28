@@ -14,6 +14,7 @@ Commands:
   sync     Recreate all symlinks
   update   Pull, install dependencies, sync, and update Neovim
   doctor   Verify required commands and managed links
+  check    Run all repository checks
   help     Show this message
 EOF
 }
@@ -30,10 +31,30 @@ case "${1:-help}" in
     brew bundle --file="$REPO/Brewfile"
     stow --dir="$REPO" --target="$HOME" --restow "${PACKAGES[@]}"
     nvim --headless "+Lazy! sync" +qa
+    "$REPO/scripts/check.sh"
     ;;
   doctor)
     failed=0
-    for command_name in git stow nvim starship fzf zoxide eza bat delta lazygit; do
+    for command_name in \
+      git \
+      gh \
+      stow \
+      mise \
+      nvim \
+      starship \
+      fzf \
+      zoxide \
+      eza \
+      bat \
+      delta \
+      lazygit \
+      rg \
+      fd \
+      gitleaks \
+      actionlint \
+      shellcheck \
+      shfmt \
+      stylua; do
       if command -v "$command_name" >/dev/null 2>&1; then
         printf 'ok      %s\n' "$command_name"
       else
@@ -49,17 +70,42 @@ case "${1:-help}" in
       failed=1
     fi
 
-    for target in "$HOME/.zshrc" "$HOME/.config/ghostty" "$HOME/.config/mise" "$HOME/.config/nvim" "$HOME/.config/starship.toml"; do
-      if [[ -L "$target" ]]; then
-        printf 'linked  %s\n' "$target"
+    managed_targets=(
+      "$HOME/.local/bin/dotfiles"
+      "$HOME/.zshrc"
+      "$HOME/.gitconfig"
+      "$HOME/.config/ghostty"
+      "$HOME/.config/mise"
+      "$HOME/.config/nvim"
+      "$HOME/.config/starship.toml"
+    )
+    managed_sources=(
+      "$REPO/bin/.local/bin/dotfiles"
+      "$REPO/zsh/.zshrc"
+      "$REPO/git/.gitconfig"
+      "$REPO/ghostty/.config/ghostty"
+      "$REPO/mise/.config/mise"
+      "$REPO/nvim/.config/nvim"
+      "$REPO/starship/.config/starship.toml"
+    )
+
+    for index in "${!managed_targets[@]}"; do
+      target="${managed_targets[$index]}"
+      source="${managed_sources[$index]}"
+      if [[ -e "$target" && "$target" -ef "$source" ]]; then
+        printf 'managed %s\n' "$target"
       else
-        printf 'unlinked %s\n' "$target"
+        printf 'unmanaged %s\n' "$target"
         failed=1
       fi
     done
+    unset managed_targets managed_sources target source index
     exit "$failed"
     ;;
-  help|-h|--help)
+  check)
+    exec "$REPO/scripts/check.sh"
+    ;;
+  help | -h | --help)
     usage
     ;;
   *)
