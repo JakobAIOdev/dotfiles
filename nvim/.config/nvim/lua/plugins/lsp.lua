@@ -1,7 +1,11 @@
 local servers = {
   bashls = {},
   cssls = {},
-  dockerls = {},
+  docker_language_server = {
+    initialization_options = {
+      telemetry = "off",
+    },
+  },
   emmet_ls = {
     filetypes = {
       "css",
@@ -69,6 +73,7 @@ local servers = {
     enable_roslyn_analyzers = true,
     organize_imports_on_format = true,
   },
+  prismals = {},
   pyright = {
     settings = {
       python = {
@@ -84,6 +89,7 @@ local servers = {
   ruby_lsp = {},
   sqlls = {},
   tailwindcss = {},
+  tombi = {},
   ts_ls = {
     settings = {
       completions = {
@@ -91,6 +97,7 @@ local servers = {
       },
     },
   },
+  twiggy_language_server = {},
   yamlls = {
     settings = {
       yaml = {
