@@ -1,6 +1,15 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = function(name) return vim.api.nvim_create_augroup("jakob_" .. name, { clear = true }) end
 
+vim.filetype.add({
+  filename = {
+    ["compose.yaml"] = "yaml.docker-compose",
+    ["compose.yml"] = "yaml.docker-compose",
+    ["docker-compose.yaml"] = "yaml.docker-compose",
+    ["docker-compose.yml"] = "yaml.docker-compose",
+  },
+})
+
 autocmd("TextYankPost", {
   group = augroup("highlight_yank"),
   callback = function() vim.highlight.on_yank({ higroup = "IncSearch", timeout = 150 }) end,

@@ -29,6 +29,10 @@ cursor-style-blink = false
 mouse-hide-while-typing = true
 macos-titlebar-style = transparent
 
+# Let Codex draw attention when it needs approval or finishes a turn.
+# On macOS this bounces the Dock icon and marks the terminal surface.
+bell-features = attention,title,border
+
 # Neovim uses mouse reporting, so Shift+Drag is always reserved for selecting
 # terminal text. The selection is copied straight to the macOS clipboard.
 mouse-shift-capture = never

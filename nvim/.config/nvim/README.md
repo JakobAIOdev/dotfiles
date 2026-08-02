@@ -1,8 +1,8 @@
 # Neovim configuration
 
 This is a small, keyboard-first Neovim setup for daily work with Go,
-TypeScript/JavaScript, Lua, Ruby, Python, PHP, Kotlin, C#, SQL, Docker, YAML,
-JSON, Markdown, and web projects.
+TypeScript/JavaScript, Lua, Ruby, Python, PHP, Twig, Kotlin, C#, SQL, Docker,
+YAML, TOML, JSON, Prisma, Markdown, and web projects.
 
 The configuration uses lazy.nvim for plugin management and keeps the visual
 language aligned with Ghostty, Starship, and Catppuccin Mocha.
